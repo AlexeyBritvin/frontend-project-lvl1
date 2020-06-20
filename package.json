@@ -1,0 +1,8 @@
+{
+    "name": "brain-games",
+    "version": "0.1.0",
+    "type": "module",
+    "bin": {
+        "brain-games": "bin/brain-games.js"
+    }
+}
