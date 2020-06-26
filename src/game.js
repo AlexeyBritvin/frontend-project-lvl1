@@ -3,6 +3,7 @@ import readlineSync from 'readline-sync';
 const YES = 'yes';
 const NO = 'no';
 const MAX_NUM = 100;
+const NUMBER_OF_GAMES = 3;
 
 const isEven = (num) => num % 2 === 0;
 
@@ -45,13 +46,19 @@ const askQuestion = () => {
 
 const startGame = (name) => {
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
-  let answerIsRight;
+  let round = 0;
 
-  do {
-    answerIsRight = askQuestion();
-  } while (answerIsRight === true);
+  while (round < NUMBER_OF_GAMES) {
+    const answerIsRight = askQuestion();
 
-  console.log(`Let's try again, ${name}!`);
+    if (answerIsRight) {
+      round += 1;
+    } else {
+      return console.log(`Let's try again, ${name}!`);
+    }
+  }
+
+  return console.log(`Congratulations, ${name}`);
 };
 
 export default startGame;
