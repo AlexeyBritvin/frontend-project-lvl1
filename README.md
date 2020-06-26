@@ -1,3 +1,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/AlexeyBritvin/Hexlet.frontend-project-lvl1/maintainability)
 
-frontend-project-lvl1
+# [Brain Games](https://ru.hexlet.io/professions/frontend/projects/44)
+
+«Игры разума» — набор из пяти консольных игр, построенных по принципу популярных мобильных приложений для прокачки мозга. Каждая игра задает вопросы, на которые нужно дать правильные ответы. После трех правильных ответов считается, что игра пройдена. Неправильные ответы завершают игру и предлагают пройти ее заново.
+
+## [Game sample](https://asciinema.org/a/fQWZYSrq5rvC1peraWaaVyjbE)
