@@ -2,6 +2,7 @@ export const gameTypes = {
   brainCalc: 'brain-calc',
   brainEven: 'brain-even',
   brainGcd: 'brain-gcd',
+  brainProgression: 'brain-progression',
 };
 
 export const gameIntros = [{
@@ -13,6 +14,9 @@ export const gameIntros = [{
 }, {
   type: gameTypes.brainGcd,
   text: 'Find the greatest common divisor of given numbers.',
+}, {
+  type: gameTypes.brainProgression,
+  text: 'What number is missing in the progression?',
 }];
 
 export const getIntro = (gameType) => {
