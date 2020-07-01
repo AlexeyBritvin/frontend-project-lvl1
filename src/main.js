@@ -1,9 +1,13 @@
-import { getName } from './helper/communicate.js';
 import NUMBER_OF_GAMES from './config/config.js';
+import brainCalcRound from './games/brain-calc.js';
 import brainEvenRound from './games/brain-even.js';
+import { getName } from './helper/communicate.js';
+import { gameTypes, getIntro } from './helper/intro.js';
 
-const sayIntro = () => {
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+const sayIntro = (gameType) => {
+  const intro = getIntro(gameType);
+
+  console.log(intro);
 };
 
 const runGameRounds = (runGameRound) => {
@@ -22,12 +26,12 @@ const runGameRounds = (runGameRound) => {
   return true;
 };
 
-const runGame = (gameRound) => {
+const runGame = (gameType, gameRound) => {
   console.log('Welcome to the Brain Games!');
   const name = getName();
   console.log(`Hello, ${name}!`);
 
-  sayIntro();
+  sayIntro(gameType);
   const success = runGameRounds(gameRound);
 
   if (!success) {
@@ -37,6 +41,6 @@ const runGame = (gameRound) => {
   return console.log(`Congratulations, ${name}`);
 };
 
-const brainEven = () => runGame(brainEvenRound);
+export const brainEven = () => runGame(gameTypes.brainEven, brainEvenRound);
 
-export default brainEven;
+export const brainCalc = () => runGame(gameTypes.brainCalc, brainCalcRound);

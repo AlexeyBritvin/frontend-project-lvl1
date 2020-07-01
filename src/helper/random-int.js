@@ -1,3 +1,3 @@
-const generateRandomInt = (max) => Math.floor((Math.random() * max) + 1);
+const generateRandomInt = (min, max) => Math.floor((Math.random() * max) + min);
 
 export default generateRandomInt;

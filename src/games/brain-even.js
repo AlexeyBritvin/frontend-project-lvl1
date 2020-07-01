@@ -14,8 +14,7 @@ const getCorrectAnswer = (num) => {
 };
 
 const brainEvenRound = () => {
-  const maxNumber = 100;
-  const num = generateRandomInt(maxNumber);
+  const num = generateRandomInt(1, 100);
   const answer = askQuestion(num);
   const correctAnswer = getCorrectAnswer(num);
   giveFeedback(answer, correctAnswer);
