@@ -1,4 +1,4 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/AlexeyBritvin/Hexlet.frontend-project-lvl1/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/AlexeyBritvin/Hexlet.frontend-project-lvl1/maintainability) [![Node.js CI](https://github.com/AlexeyBritvin/Hexlet.frontend-project-lvl1/workflows/Node.js%20CI/badge.svg)](https://github.com/AlexeyBritvin/Hexlet.frontend-project-lvl1/actions?query=workflow%3A%22Node.js+CI%22)
 
 # [Brain Games](https://ru.hexlet.io/professions/frontend/projects/44)
 
