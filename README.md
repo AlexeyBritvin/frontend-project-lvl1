@@ -4,4 +4,8 @@
 
 «Игры разума» — набор из пяти консольных игр, построенных по принципу популярных мобильных приложений для прокачки мозга. Каждая игра задает вопросы, на которые нужно дать правильные ответы. После трех правильных ответов считается, что игра пройдена. Неправильные ответы завершают игру и предлагают пройти ее заново.
 
-## [Game sample](https://asciinema.org/a/fQWZYSrq5rvC1peraWaaVyjbE)
+## Games:
+
+* [Brain-even](https://asciinema.org/a/fQWZYSrq5rvC1peraWaaVyjbE)
+
+* [Brain-calc](https://asciinema.org/a/P8PXkXN5Gxwif3fz8cCAkVX0r)
