@@ -1,6 +1,7 @@
 export const gameTypes = {
   brainCalc: 'brain-calc',
   brainEven: 'brain-even',
+  brainGcd: 'brain-gcd',
 };
 
 export const gameIntros = [{
@@ -9,6 +10,9 @@ export const gameIntros = [{
 }, {
   type: gameTypes.brainEven,
   text: 'Answer "yes" if the number is even, otherwise answer "no".',
+}, {
+  type: gameTypes.brainGcd,
+  text: 'Find the greatest common divisor of given numbers.',
 }];
 
 export const getIntro = (gameType) => {
