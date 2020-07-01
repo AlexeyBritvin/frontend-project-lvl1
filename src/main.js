@@ -3,6 +3,7 @@ import brainCalcRound from './games/brain-calc.js';
 import brainEvenRound from './games/brain-even.js';
 import brainGcdRound from './games/brain-gcd.js';
 import brainProgressionRound from './games/brain-progression.js';
+import brainPrimeRound from './games/brain-prime.js';
 import { getName } from './helper/communicate.js';
 import { gameTypes, getIntro } from './helper/intro.js';
 
@@ -50,3 +51,5 @@ export const brainCalc = () => runGame(gameTypes.brainCalc, brainCalcRound);
 export const brainGcd = () => runGame(gameTypes.brainGcd, brainGcdRound);
 
 export const brainProgression = () => runGame(gameTypes.brainProgression, brainProgressionRound);
+
+export const brainPrime = () => runGame(gameTypes.brainPrime, brainPrimeRound);

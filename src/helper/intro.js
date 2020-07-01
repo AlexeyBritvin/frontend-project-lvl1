@@ -3,6 +3,7 @@ export const gameTypes = {
   brainEven: 'brain-even',
   brainGcd: 'brain-gcd',
   brainProgression: 'brain-progression',
+  brainPrime: 'brain-prime',
 };
 
 export const gameIntros = [{
@@ -17,6 +18,9 @@ export const gameIntros = [{
 }, {
   type: gameTypes.brainProgression,
   text: 'What number is missing in the progression?',
+}, {
+  type: gameTypes.brainPrime,
+  text: 'Answer "yes" if given number is prime. Otherwise answer "no".',
 }];
 
 export const getIntro = (gameType) => {
