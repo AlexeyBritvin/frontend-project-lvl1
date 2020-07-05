@@ -1,11 +1,12 @@
-import { askQuestion, giveFeedback } from '../helper/communicate.js';
 import generateRandomInt from '../helper/random-int.js';
 import isPrime from '../helper/is-prime.js';
+import { game, createQuestionPair } from '../main.js';
 
 const YES = 'yes';
 const NO = 'no';
+const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-const getCorrectAnswer = (num) => {
+const getAnswer = (num) => {
   if (isPrime(num)) {
     return YES;
   }
@@ -13,13 +14,12 @@ const getCorrectAnswer = (num) => {
   return NO;
 };
 
-const brainPrimeRound = () => {
+const brainPrimeQuestion = () => {
   const num = generateRandomInt(1, 100);
-  const answer = askQuestion(num);
-  const correctAnswer = getCorrectAnswer(num);
-  giveFeedback(answer, correctAnswer);
-
-  return answer === correctAnswer;
+  const answer = getAnswer(num);
+  return createQuestionPair(num, answer);
 };
 
-export default brainPrimeRound;
+const brainPrimeGame = () => game(description, brainPrimeQuestion);
+
+export default brainPrimeGame;

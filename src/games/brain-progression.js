@@ -1,19 +1,22 @@
-import { askQuestion, giveFeedback } from '../helper/communicate.js';
 import generateRandomInt from '../helper/random-int.js';
 import generateProgression from '../helper/progression.js';
+import { game, createQuestionPair } from '../main.js';
 
-const getCorrectAnswer = (num) => num.toString();
+const description = 'What number is missing in the progression?';
 
-const brainProgressionRound = () => {
+const getAnswer = (num) => num.toString();
+
+const brainProgressionQuestion = () => {
   const progression = generateProgression(10);
   const copy = [...progression];
   const indexToReplace = generateRandomInt(0, 9);
   const [replaced] = copy.splice(indexToReplace, 1, '..');
-  const answer = askQuestion(`${copy.join(', ')}`);
-  const correctAnswer = getCorrectAnswer(replaced);
-  giveFeedback(answer, correctAnswer);
+  const question = `${copy.join(', ')}`;
+  const answer = getAnswer(replaced);
 
-  return answer === correctAnswer;
+  return createQuestionPair(question, answer);
 };
 
-export default brainProgressionRound;
+const brainProgressionGame = () => game(description, brainProgressionQuestion);
+
+export default brainProgressionGame;

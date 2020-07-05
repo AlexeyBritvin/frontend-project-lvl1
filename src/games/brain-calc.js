@@ -1,9 +1,10 @@
-import { askQuestion, giveFeedback } from '../helper/communicate.js';
 import generateRandomInt from '../helper/random-int.js';
+import { game, createQuestionPair } from '../main.js';
 
 const operations = ['+', '-', '*'];
+const description = 'What is the result of the expression?';
 
-const getCorrectAnswer = (num1, num2, operation) => {
+const getAnswer = (num1, num2, operation) => {
   const [addition, substraction, multiplication] = operations;
   let answer;
 
@@ -27,15 +28,15 @@ const getCorrectAnswer = (num1, num2, operation) => {
   return answer.toString();
 };
 
-const brainCalcRound = () => {
+const brainCalcQuestion = () => {
   const num1 = generateRandomInt(1, 10);
   const num2 = generateRandomInt(1, 10);
   const operation = operations[generateRandomInt(0, 2)];
-  const answer = askQuestion(`${num1} ${operation} ${num2}`);
-  const correctAnswer = getCorrectAnswer(num1, num2, operation);
-  giveFeedback(answer, correctAnswer);
-
-  return answer === correctAnswer;
+  const question = `${num1} ${operation} ${num2}`;
+  const answer = getAnswer(num1, num2, operation);
+  return createQuestionPair(question, answer);
 };
 
-export default brainCalcRound;
+const brainCalcGame = () => game(description, brainCalcQuestion);
+
+export default brainCalcGame;

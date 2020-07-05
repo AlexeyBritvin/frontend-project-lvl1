@@ -1,23 +1,23 @@
 import NUMBER_OF_GAMES from './config/config.js';
-import brainCalcRound from './games/brain-calc.js';
-import brainEvenRound from './games/brain-even.js';
-import brainGcdRound from './games/brain-gcd.js';
-import brainProgressionRound from './games/brain-progression.js';
-import brainPrimeRound from './games/brain-prime.js';
-import { getName } from './helper/communicate.js';
-import { gameTypes, getIntro } from './helper/intro.js';
+import { getName, askQuestion, giveFeedback } from './helper/communicate.js';
 
-const sayIntro = (gameType) => {
-  const intro = getIntro(gameType);
+export const createQuestionPair = (question, answer) => ({ question, answer });
 
-  console.log(intro);
-};
+export const getAnswer = (pair) => pair.answer;
 
-const runGameRounds = (runGameRound) => {
+export const getQuestion = (pair) => pair.question;
+
+const runGameRounds = (getGameQuestion) => {
   let round = 0;
 
   while (round < NUMBER_OF_GAMES) {
-    const answerIsRight = runGameRound();
+    const pair = getGameQuestion();
+    const question = getQuestion(pair);
+    const answer = getAnswer(pair);
+    const userAnswer = askQuestion(question);
+    giveFeedback(userAnswer, answer);
+
+    const answerIsRight = answer === userAnswer;
 
     if (answerIsRight) {
       round += 1;
@@ -29,13 +29,13 @@ const runGameRounds = (runGameRound) => {
   return true;
 };
 
-const runGame = (gameType, gameRound) => {
+export const game = (description, gameQuestion) => {
   console.log('Welcome to the Brain Games!');
   const name = getName();
   console.log(`Hello, ${name}!`);
+  console.log(description);
 
-  sayIntro(gameType);
-  const success = runGameRounds(gameRound);
+  const success = runGameRounds(gameQuestion);
 
   if (!success) {
     return console.log(`Let's try again, ${name}!`);
@@ -43,13 +43,3 @@ const runGame = (gameType, gameRound) => {
 
   return console.log(`Congratulations, ${name}`);
 };
-
-export const brainEven = () => runGame(gameTypes.brainEven, brainEvenRound);
-
-export const brainCalc = () => runGame(gameTypes.brainCalc, brainCalcRound);
-
-export const brainGcd = () => runGame(gameTypes.brainGcd, brainGcdRound);
-
-export const brainProgression = () => runGame(gameTypes.brainProgression, brainProgressionRound);
-
-export const brainPrime = () => runGame(gameTypes.brainPrime, brainPrimeRound);

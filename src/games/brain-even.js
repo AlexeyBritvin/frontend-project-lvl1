@@ -1,11 +1,12 @@
-import { askQuestion, giveFeedback } from '../helper/communicate.js';
 import isEven from '../helper/is-even.js';
 import generateRandomInt from '../helper/random-int.js';
+import { game, createQuestionPair } from '../main.js';
 
 const YES = 'yes';
 const NO = 'no';
+const description = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-const getCorrectAnswer = (num) => {
+const getAnswer = (num) => {
   if (isEven(num)) {
     return YES;
   }
@@ -13,13 +14,12 @@ const getCorrectAnswer = (num) => {
   return NO;
 };
 
-const brainEvenRound = () => {
+const brainEvenQuestion = () => {
   const num = generateRandomInt(1, 100);
-  const answer = askQuestion(num);
-  const correctAnswer = getCorrectAnswer(num);
-  giveFeedback(answer, correctAnswer);
-
-  return answer === correctAnswer;
+  const answer = getAnswer(num);
+  return createQuestionPair(num, answer);
 };
 
-export default brainEvenRound;
+const brainEvenGame = () => game(description, brainEvenQuestion);
+
+export default brainEvenGame;
