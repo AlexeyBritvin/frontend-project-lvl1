@@ -1,10 +1,11 @@
-import isEven from '../helper/is-even.js';
 import generateRandomInt from '../helper/random-int.js';
 import { game, createQuestionPair } from '../main.js';
 
 const YES = 'yes';
 const NO = 'no';
 const description = 'Answer "yes" if the number is even, otherwise answer "no".';
+
+const isEven = (num) => num % 2 === 0;
 
 const getAnswer = (num) => {
   if (isEven(num)) {

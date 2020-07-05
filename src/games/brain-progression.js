@@ -1,8 +1,20 @@
 import generateRandomInt from '../helper/random-int.js';
-import generateProgression from '../helper/progression.js';
 import { game, createQuestionPair } from '../main.js';
 
 const description = 'What number is missing in the progression?';
+
+const generateProgression = (size) => {
+  const step = generateRandomInt(1, 5);
+  const start = generateRandomInt(1, 100);
+  const progression = [start];
+
+  for (let i = 0; i < size; i += 1) {
+    const next = step + progression[i];
+    progression.push(next);
+  }
+
+  return progression;
+};
 
 const getAnswer = (num) => num.toString();
 

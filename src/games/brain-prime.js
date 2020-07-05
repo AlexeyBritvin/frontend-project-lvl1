@@ -1,10 +1,17 @@
 import generateRandomInt from '../helper/random-int.js';
-import isPrime from '../helper/is-prime.js';
 import { game, createQuestionPair } from '../main.js';
 
 const YES = 'yes';
 const NO = 'no';
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+const isPrime = (num) => {
+  for (let i = 2; i < num; i += 1) {
+    if (num % i === 0) return false;
+  }
+
+  return num > 1;
+};
 
 const getAnswer = (num) => {
   if (isPrime(num)) {
