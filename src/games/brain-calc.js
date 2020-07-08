@@ -5,28 +5,27 @@ import { createQuestionPair } from '../helper/create-question.js';
 const operations = ['+', '-', '*'];
 const description = 'What is the result of the expression?';
 
-const getAnswer = (num1, num2, operation) => {
+const calcResult = (num1, num2, operation) => {
   const [addition, substraction, multiplication] = operations;
-  let answer;
 
   switch (operation) {
     case addition:
-      answer = num1 + num2;
-      break;
+      return num1 + num2;
 
     case substraction:
-      answer = num1 - num2;
-      break;
+      return num1 - num2;
 
     case multiplication:
-      answer = num1 * num2;
-      break;
+      return num1 * num2;
 
     default:
       throw new Error('Unexpected operation');
   }
+};
 
-  return answer.toString();
+const getAnswer = (num1, num2, operation) => {
+  const result = calcResult(num1, num2, operation);
+  return result.toString();
 };
 
 const genGameRoundData = () => {
