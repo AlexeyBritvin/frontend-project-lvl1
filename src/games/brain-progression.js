@@ -4,14 +4,12 @@ import { createQuestionPair } from '../helper/create-question.js';
 
 const description = 'What number is missing in the progression?';
 
-const generateProgression = (size) => {
-  const step = generateRandomInt(1, 5);
-  const start = generateRandomInt(1, 100);
-  const progression = [start];
+const generateProgression = (firstElement, step, size) => {
+  const progression = [];
 
-  for (let i = 0; i < size; i += 1) {
-    const next = step + progression[i];
-    progression.push(next);
+  for (let index = 0; index < size; index += 1) {
+    const current = firstElement + index * step;
+    progression.push(current);
   }
 
   return progression;
@@ -20,7 +18,10 @@ const generateProgression = (size) => {
 const getAnswer = (num) => num.toString();
 
 const genGameRoundData = () => {
-  const progression = generateProgression(10);
+  const progressionSize = 10;
+  const progressionStep = generateRandomInt(1, 5);
+  const firstElement = generateRandomInt(1, 100);
+  const progression = generateProgression(firstElement, progressionStep, progressionSize);
   const copy = [...progression];
   const indexToReplace = generateRandomInt(0, 9);
   const [replaced] = copy.splice(indexToReplace, 1, '..');
