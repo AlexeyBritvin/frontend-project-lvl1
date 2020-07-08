@@ -1,45 +1,30 @@
+import readlineSync from 'readline-sync';
 import NUMBER_OF_GAMES from './config/config.js';
-import { getName, askQuestion, giveFeedback } from './helper/communicate.js';
+import { getQuestion, getAnswer } from './helper/create-question.js';
 
-export const createQuestionPair = (question, answer) => ({ question, answer });
-
-export const getAnswer = (pair) => pair.answer;
-
-export const getQuestion = (pair) => pair.question;
-
-const runGameRounds = (getGameQuestion) => {
-  let round = 0;
-
-  while (round < NUMBER_OF_GAMES) {
-    const pair = getGameQuestion();
-    const question = getQuestion(pair);
-    const answer = getAnswer(pair);
-    const userAnswer = askQuestion(question);
-    giveFeedback(userAnswer, answer);
-
-    const answerIsRight = answer === userAnswer;
-
-    if (answerIsRight) {
-      round += 1;
-    } else {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-export const game = (description, gameQuestion) => {
+const startGame = (description, genGameData) => {
   console.log('Welcome to the Brain Games!');
-  const name = getName();
+  const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   console.log(description);
 
-  const success = runGameRounds(gameQuestion);
+  for (let round = 0; round < NUMBER_OF_GAMES; round += 1) {
+    const pair = genGameData();
+    const question = getQuestion(pair);
+    const answer = getAnswer(pair);
+    console.log(`Question: ${question}`);
+    const userAnswer = readlineSync.question('Your answer: ');
 
-  if (!success) {
-    return console.log(`Let's try again, ${name}!`);
+    if (answer === userAnswer) {
+      console.log('Correct!');
+    } else {
+      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${answer}".`);
+      console.log(`Let's try again, ${name}!`);
+      return;
+    }
   }
 
-  return console.log(`Congratulations, ${name}`);
+  console.log(`Congratulations, ${name}`);
 };
+
+export default startGame;

@@ -1,5 +1,6 @@
 import generateRandomInt from '../helper/random-int.js';
-import { game, createQuestionPair } from '../main.js';
+import startGame from '../main.js';
+import { createQuestionPair } from '../helper/create-question.js';
 
 const description = 'What number is missing in the progression?';
 
@@ -18,7 +19,7 @@ const generateProgression = (size) => {
 
 const getAnswer = (num) => num.toString();
 
-const brainProgressionQuestion = () => {
+const genGameRoundData = () => {
   const progression = generateProgression(10);
   const copy = [...progression];
   const indexToReplace = generateRandomInt(0, 9);
@@ -29,6 +30,6 @@ const brainProgressionQuestion = () => {
   return createQuestionPair(question, answer);
 };
 
-const brainProgressionGame = () => game(description, brainProgressionQuestion);
+const runBrainProgressionGame = () => startGame(description, genGameRoundData);
 
-export default brainProgressionGame;
+export default runBrainProgressionGame;

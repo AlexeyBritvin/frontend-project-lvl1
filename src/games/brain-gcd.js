@@ -1,5 +1,6 @@
 import generateRandomInt from '../helper/random-int.js';
-import { game, createQuestionPair } from '../main.js';
+import startGame from '../main.js';
+import { createQuestionPair } from '../helper/create-question.js';
 
 const description = 'Find the greatest common divisor of given numbers.';
 
@@ -17,7 +18,7 @@ const getAnswer = (num1, num2) => {
   return gcd.toString();
 };
 
-const brainGcdQuestion = () => {
+const genGameRoundData = () => {
   const num1 = generateRandomInt(1, 100);
   const num2 = generateRandomInt(1, 100);
   const question = `${num1} ${num2}`;
@@ -25,6 +26,6 @@ const brainGcdQuestion = () => {
   return createQuestionPair(question, answer);
 };
 
-const brainGcdGame = () => game(description, brainGcdQuestion);
+const runBrainGcdGame = () => startGame(description, genGameRoundData);
 
-export default brainGcdGame;
+export default runBrainGcdGame;

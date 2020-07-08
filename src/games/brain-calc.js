@@ -1,5 +1,6 @@
 import generateRandomInt from '../helper/random-int.js';
-import { game, createQuestionPair } from '../main.js';
+import startGame from '../main.js';
+import { createQuestionPair } from '../helper/create-question.js';
 
 const operations = ['+', '-', '*'];
 const description = 'What is the result of the expression?';
@@ -28,7 +29,7 @@ const getAnswer = (num1, num2, operation) => {
   return answer.toString();
 };
 
-const brainCalcQuestion = () => {
+const genGameRoundData = () => {
   const num1 = generateRandomInt(1, 10);
   const num2 = generateRandomInt(1, 10);
   const operation = operations[generateRandomInt(0, 2)];
@@ -37,6 +38,6 @@ const brainCalcQuestion = () => {
   return createQuestionPair(question, answer);
 };
 
-const brainCalcGame = () => game(description, brainCalcQuestion);
+const runBrainCalcGame = () => startGame(description, genGameRoundData);
 
-export default brainCalcGame;
+export default runBrainCalcGame;
