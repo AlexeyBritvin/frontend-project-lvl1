@@ -1,5 +1,8 @@
-import { askQuestion, giveFeedback } from '../helper/communicate.js';
 import generateRandomInt from '../helper/random-int.js';
+import startGame from '../main.js';
+import { createQuestionPair } from '../helper/create-question.js';
+
+const description = 'Find the greatest common divisor of given numbers.';
 
 const findGcd = (a, b) => {
   if (!b) {
@@ -9,20 +12,20 @@ const findGcd = (a, b) => {
   return findGcd(b, a % b);
 };
 
-const getCorrectAnswer = (num1, num2) => {
+const getAnswer = (num1, num2) => {
   const gcd = findGcd(num1, num2);
 
   return gcd.toString();
 };
 
-const brainGcdRound = () => {
+const genGameRoundData = () => {
   const num1 = generateRandomInt(1, 100);
   const num2 = generateRandomInt(1, 100);
-  const answer = askQuestion(`${num1} ${num2}`);
-  const correctAnswer = getCorrectAnswer(num1, num2);
-  giveFeedback(answer, correctAnswer);
-
-  return answer === correctAnswer;
+  const question = `${num1} ${num2}`;
+  const answer = getAnswer(num1, num2);
+  return createQuestionPair(question, answer);
 };
 
-export default brainGcdRound;
+const runBrainGcdGame = () => startGame(description, genGameRoundData);
+
+export default runBrainGcdGame;

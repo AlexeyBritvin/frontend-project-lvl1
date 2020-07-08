@@ -1,25 +1,29 @@
-import { askQuestion, giveFeedback } from '../helper/communicate.js';
 import generateRandomInt from '../helper/random-int.js';
-import isPrime from '../helper/is-prime.js';
+import startGame from '../main.js';
+import { createQuestionPair } from '../helper/create-question.js';
 
 const YES = 'yes';
 const NO = 'no';
+const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-const getCorrectAnswer = (num) => {
-  if (isPrime(num)) {
-    return YES;
+const isPrime = (num) => {
+  const sqrt = Math.round(Math.sqrt(num));
+
+  for (let i = 2; i < sqrt; i += 1) {
+    if (num % i === 0) return false;
   }
 
-  return NO;
+  return num > 1;
 };
 
-const brainPrimeRound = () => {
+const getAnswer = (num) => (isPrime(num) ? YES : NO);
+
+const genGameRoundData = () => {
   const num = generateRandomInt(1, 100);
-  const answer = askQuestion(num);
-  const correctAnswer = getCorrectAnswer(num);
-  giveFeedback(answer, correctAnswer);
-
-  return answer === correctAnswer;
+  const answer = getAnswer(num);
+  return createQuestionPair(num, answer);
 };
 
-export default brainPrimeRound;
+const runBrainPrimeGame = () => startGame(description, genGameRoundData);
+
+export default runBrainPrimeGame;

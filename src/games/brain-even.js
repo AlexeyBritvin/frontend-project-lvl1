@@ -1,25 +1,21 @@
-import { askQuestion, giveFeedback } from '../helper/communicate.js';
-import isEven from '../helper/is-even.js';
 import generateRandomInt from '../helper/random-int.js';
+import startGame from '../main.js';
+import { createQuestionPair } from '../helper/create-question.js';
 
 const YES = 'yes';
 const NO = 'no';
+const description = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-const getCorrectAnswer = (num) => {
-  if (isEven(num)) {
-    return YES;
-  }
+const isEven = (num) => num % 2 === 0;
 
-  return NO;
+const getAnswer = (num) => (isEven(num) ? YES : NO);
+
+const genGameRoundData = () => {
+  const question = generateRandomInt(1, 100);
+  const answer = getAnswer(question);
+  return createQuestionPair(question, answer);
 };
 
-const brainEvenRound = () => {
-  const num = generateRandomInt(1, 100);
-  const answer = askQuestion(num);
-  const correctAnswer = getCorrectAnswer(num);
-  giveFeedback(answer, correctAnswer);
+const runBrainEvenGame = () => startGame(description, genGameRoundData);
 
-  return answer === correctAnswer;
-};
-
-export default brainEvenRound;
+export default runBrainEvenGame;

@@ -1,55 +1,30 @@
+import readlineSync from 'readline-sync';
 import NUMBER_OF_GAMES from './config/config.js';
-import brainCalcRound from './games/brain-calc.js';
-import brainEvenRound from './games/brain-even.js';
-import brainGcdRound from './games/brain-gcd.js';
-import brainProgressionRound from './games/brain-progression.js';
-import brainPrimeRound from './games/brain-prime.js';
-import { getName } from './helper/communicate.js';
-import { gameTypes, getIntro } from './helper/intro.js';
+import { getQuestion, getAnswer } from './helper/create-question.js';
 
-const sayIntro = (gameType) => {
-  const intro = getIntro(gameType);
+const startGame = (description, genGameData) => {
+  console.log('Welcome to the Brain Games!');
+  const name = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${name}!`);
+  console.log(description);
 
-  console.log(intro);
-};
+  for (let round = 0; round < NUMBER_OF_GAMES; round += 1) {
+    const pair = genGameData();
+    const question = getQuestion(pair);
+    const answer = getAnswer(pair);
+    console.log(`Question: ${question}`);
+    const userAnswer = readlineSync.question('Your answer: ');
 
-const runGameRounds = (runGameRound) => {
-  let round = 0;
-
-  while (round < NUMBER_OF_GAMES) {
-    const answerIsRight = runGameRound();
-
-    if (answerIsRight) {
-      round += 1;
+    if (answer === userAnswer) {
+      console.log('Correct!');
     } else {
-      return false;
+      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${answer}".`);
+      console.log(`Let's try again, ${name}!`);
+      return;
     }
   }
 
-  return true;
+  console.log(`Congratulations, ${name}`);
 };
 
-const runGame = (gameType, gameRound) => {
-  console.log('Welcome to the Brain Games!');
-  const name = getName();
-  console.log(`Hello, ${name}!`);
-
-  sayIntro(gameType);
-  const success = runGameRounds(gameRound);
-
-  if (!success) {
-    return console.log(`Let's try again, ${name}!`);
-  }
-
-  return console.log(`Congratulations, ${name}`);
-};
-
-export const brainEven = () => runGame(gameTypes.brainEven, brainEvenRound);
-
-export const brainCalc = () => runGame(gameTypes.brainCalc, brainCalcRound);
-
-export const brainGcd = () => runGame(gameTypes.brainGcd, brainGcdRound);
-
-export const brainProgression = () => runGame(gameTypes.brainProgression, brainProgressionRound);
-
-export const brainPrime = () => runGame(gameTypes.brainPrime, brainPrimeRound);
+export default startGame;
