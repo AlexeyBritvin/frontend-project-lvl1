@@ -7,7 +7,9 @@ const NO = 'no';
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (num) => {
-  for (let i = 2; i < num; i += 1) {
+  const sqrt = Math.round(Math.sqrt(num));
+
+  for (let i = 2; i < sqrt; i += 1) {
     if (num % i === 0) return false;
   }
 
