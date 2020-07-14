@@ -7,10 +7,10 @@ const NO = 'no';
 const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (num) => {
-  const sqrt = Math.round(Math.sqrt(num));
+  const maxDivisor = Math.sqrt(num);
 
-  for (let i = 2; i < sqrt; i += 1) {
-    if (num % i === 0) return false;
+  for (let divisor = 2; divisor < maxDivisor; divisor += 1) {
+    if (num % divisor === 0) return false;
   }
 
   return num > 1;
@@ -19,9 +19,9 @@ const isPrime = (num) => {
 const getAnswer = (num) => (isPrime(num) ? YES : NO);
 
 const genGameRoundData = () => {
-  const num = generateRandomInt(1, 100);
-  const answer = getAnswer(num);
-  return createQuestionPair(num, answer);
+  const question = generateRandomInt(1, 100);
+  const answer = getAnswer(question);
+  return createQuestionPair(question.toString(), answer);
 };
 
 const runBrainPrimeGame = () => startGame(description, genGameRoundData);
