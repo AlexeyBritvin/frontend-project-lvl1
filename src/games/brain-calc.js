@@ -31,7 +31,7 @@ const getAnswer = (num1, num2, operation) => {
 const genGameRoundData = () => {
   const num1 = generateRandomInt(1, 10);
   const num2 = generateRandomInt(1, 10);
-  const operation = operations[generateRandomInt(0, 2)];
+  const operation = operations[generateRandomInt(0, operations.length - 1)];
   const question = `${num1} ${operation} ${num2}`;
   const answer = getAnswer(num1, num2, operation);
   return createQuestionPair(question, answer);

@@ -13,7 +13,7 @@ const getAnswer = (num) => (isEven(num) ? YES : NO);
 const genGameRoundData = () => {
   const question = generateRandomInt(1, 100);
   const answer = getAnswer(question);
-  return createQuestionPair(question, answer);
+  return createQuestionPair(question.toString(), answer);
 };
 
 const runBrainEvenGame = () => startGame(description, genGameRoundData);
